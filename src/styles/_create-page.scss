@@ -1,0 +1,250 @@
+@import 'colors';
+
+.create_container {
+    .create_card_body {
+        display: flex;
+        justify-content: space-evenly;
+
+        img {
+            width: 188px;
+            height: 188px;
+            border: 1px solid $grey;
+            opacity: 1;
+        }
+    }
+}
+
+.creator_card {
+    .form_column_first_print {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    .close_button {
+        display: flex;
+        justify-content: flex-end;
+        color: #006837;
+        font-size: 30px;
+        margin: 21px 35px 0px 0px;
+        cursor: pointer;
+    }
+
+    .title_bar {
+        margin: 21px 35px 15px 35px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .title_text {
+            font-size: 30px;
+            letter-spacing: 0px;
+            color: $base-color;
+            opacity: 1;
+            font-weight: 500;
+        }
+
+        .subtitle_container {
+            .id_text_chip {
+                cursor: pointer;
+                font-size: 16px;
+                letter-spacing: 0px;
+                color: $base-color;
+                opacity: 1;
+                font-weight: 300;
+                width: 188px;
+                height: 35px;
+                background-color: $white-bg;
+                border: 1px solid #707070;
+                border-radius: 8px;
+                opacity: 1;
+                padding: 10px;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .template_section {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 25px;
+
+        img {
+            width: 188px;
+            height: 188px;
+            object-fit: cover;
+        }
+    }
+
+    .form_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 25px;
+
+        .form_row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+
+            .form_column_first {
+                margin-left: 69px;
+                display: flex;
+                align-items: center;
+
+                .drop_down {
+                    text-align: left;
+                    font: normal normal normal 16px/21px Roboto;
+                    letter-spacing: 0px;
+                    color: $base-color;
+                    opacity: 1;
+                    width: 188px;
+                    height: 35px;
+                    border-radius: 8px;
+                    margin-left: 15px;
+                }
+
+                .input_field {
+                    background: $white-bg 0% 0% no-repeat padding-box;
+                    border: 1px solid $grey;
+                    border-radius: 8px;
+                    width: 188px;
+                    height: 35px;
+                    margin-left: 70px;
+                }
+            }
+
+            .color_scheme_block {
+                height: 32px;
+                width: 32px;
+                opacity: 0.54;
+                margin-left: 5px;
+            }
+
+            .form_column_second {
+                margin-right: 69px;
+                display: flex;
+                align-items: center;
+
+                .print_img {
+                    height: 309px;
+                    width: 309px;
+                    object-fit: cover;
+                }
+
+                .subtitle_text {
+                    margin-left: 56px;
+                }
+
+                .color_scheme_block {
+                    height: 32px;
+                    width: 32px;
+                    opacity: 0.54;
+                    margin-left: 5px;
+                }
+
+                .zoom_text {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+
+    }
+
+    .bottom_row {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 35px;
+    }
+
+    .robo_mic_button {
+        margin-left: 65px;
+        background-color: $base-color;
+        width: 113px;
+        height: 52px;
+        border-radius: 8px;
+    }
+
+    .create_map_button {
+        margin-right: 65px;
+        background-color: $base-color;
+        color: white;
+        width: 113px;
+        height: 52px;
+        background-color: $base-color;
+        border-radius: 8px;
+    }
+}
+
+.templates_card {
+    .close_button {
+        display: flex;
+        justify-content: flex-end;
+        color: #006837;
+        font-size: 30px;
+        margin: 21px 35px 0px 0px;
+        cursor: pointer;
+    }
+    .title_bar {
+        margin: 21px 35px 15px 35px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .title_text {
+            font-size: 30px;
+            letter-spacing: 0px;
+            color: $base-color;
+            opacity: 1;
+            font-weight: 500;
+        }
+    }
+    .templates_container {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+
+        .template {
+            width: 201px;
+            height: 241px;
+            background: $white-bg 0% 0% no-repeat padding-box;
+            border: 1px solid $grey;
+            border-radius: 8px;
+            opacity: 1;
+            margin: 15px;
+            margin-top: 25px;
+            display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+        }
+
+        img {
+            width: 190px;
+            height: 187px;
+            object-fit: cover;
+            border: 1px solid $grey;
+        }
+
+        span {
+           font-size: 20px;
+            letter-spacing: 0px;
+            color: $base-color;
+            opacity: 1;
+        }
+    }
+}
+
+.ReactModal__Content {
+    border: none !important;
+}
+
+.ReactModal__Content--after-open {
+    border: none !important;
+}
