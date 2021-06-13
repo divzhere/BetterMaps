@@ -1,0 +1,58 @@
+@import 'colors';
+
+.accounts_page {
+    .account_card_body {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .form_container {
+        margin-top: 27px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        .form_row {
+            display: flex;
+            align-items: center;
+        }
+
+        img {
+            width: 87px;
+            height: 87px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 1px solid $grey;
+        }
+
+        .input_field {
+            color: $base-color;
+            width: 285px;
+            height: 25px;
+            margin: 7px;
+            padding: 5px;
+            box-shadow: none;
+            text-align: none;
+            margin-left: 7px;
+            background-color: #C9C9C9;
+        }
+
+
+    }
+
+    .bottom_row {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        .create_map_button {
+            margin-right: 65px;
+            background-color: $base-color;
+            color: white;
+            width: 113px;
+            height: 52px;
+            background-color: $base-color;
+            border-radius: 8px;
+        }
+    }
+}

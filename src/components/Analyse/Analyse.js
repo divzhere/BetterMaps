@@ -4,9 +4,8 @@ import digMap from "../../images/web_map.png";
 import { Button } from "../common/Button";
 import { Card } from "../common/Card";
 import Modal from 'react-modal'
-import {WebCreator} from "../Create/WebCreator"
-import {PrintCreator} from "../Create/PrintCreator"
 import {Helmet } from 'react-helmet'
+import {StyleAnalytics} from "./StyleAnalytics"
 
 export const Analyse = () => {
     const [showDig,setShowDig] = React.useState(false)
@@ -35,21 +34,21 @@ export const Analyse = () => {
           </div>
         </Card>
         <Modal isOpen={showDig}>
-          <WebCreator>
+          <StyleAnalytics>
             <span onClick={() => setShowDig(!showDig)} className="close_button">
               &#10006;
             </span>
-          </WebCreator>
+          </StyleAnalytics>
         </Modal>
         <Modal isOpen={showNonDig}>
-          <PrintCreator>
+          <StyleAnalytics>
             <span
               onClick={() => setShowNonDig(!showNonDig)}
               className="close_button"
             >
               &#10006;
             </span>
-          </PrintCreator>
+          </StyleAnalytics>
         </Modal>
       </div>
     );

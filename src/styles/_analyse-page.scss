@@ -1,0 +1,47 @@
+@import 'colors';
+
+.analyse_form_row {
+    display: flex;
+    margin-bottom: 7px !important;
+}
+
+.analyse_form_col {
+    display: flex;
+    margin-bottom: 7px !important;
+    flex-direction: column;
+}
+
+.analyse_form_col>*,
+.analyse_form_row>* {
+    display: flex;
+    align-items: center;
+    margin-bottom: 7px !important;
+    width: 250px;
+    justify-content: flex-start;
+}
+
+.analyse_img {
+    margin-right: 70px;
+
+    img {
+        width: 309px !important;
+        height: 309px !important;
+        object-fit: cover;
+
+    }
+
+}
+
+.analyse_textarea {
+    width: 554px;
+    height: 314px;
+    margin-left: 68px;
+    text-align: left;
+    font: normal normal normal 16px/26px Roboto;
+    letter-spacing: 0px;
+    color: $base-color;
+    opacity: 1;
+    padding : 8px;
+    background-color: white;
+    border: 2px solid #707070;
+}

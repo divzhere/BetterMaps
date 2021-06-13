@@ -18,7 +18,41 @@
     .form_column_first_print {
         flex-direction: column;
         align-items: flex-start !important;
+        margin-left: 20px;
+       
+        
+        .size_drop_down {
+            width: 65px !important;
+        }
+       
+        .size_wrapper {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            .size_input_container {
+                display: flex;
+                width: 100%;
+                justify-content: space-around;
+                align-items: center;
+                
+                input {
+                    width: 75px !important;
+                    height: 35px !important;
+                    margin-left: 0px !important;
+                }
+    
+                span {
+                    text-align: left;
+                    font: normal normal normal 20px/26px Roboto;
+                    letter-spacing: 0px;
+                    color: $base-color;
+                    opacity: 1;
+                }
+            }
+        }
+        
     }
+
     .close_button {
         display: flex;
         justify-content: flex-end;
@@ -86,10 +120,18 @@
             align-items: center;
             margin-top: 25px;
 
+            .form_column_first>* {
+                margin-bottom: 25px;
+            }
+
             .form_column_first {
                 margin-left: 69px;
                 display: flex;
                 align-items: center;
+
+                .select-contianer {
+                    margin-left: 25px;
+                }
 
                 .drop_down {
                     text-align: left;
@@ -190,6 +232,7 @@
         margin: 21px 35px 0px 0px;
         cursor: pointer;
     }
+
     .title_bar {
         margin: 21px 35px 15px 35px;
         display: flex;
@@ -204,6 +247,7 @@
             font-weight: 500;
         }
     }
+
     .templates_container {
         display: flex;
         flex-wrap: wrap;
@@ -220,9 +264,9 @@
             margin: 15px;
             margin-top: 25px;
             display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
         }
 
         img {
@@ -233,7 +277,7 @@
         }
 
         span {
-           font-size: 20px;
+            font-size: 20px;
             letter-spacing: 0px;
             color: $base-color;
             opacity: 1;

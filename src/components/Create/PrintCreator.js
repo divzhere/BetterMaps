@@ -2,12 +2,54 @@ import React from 'react'
 import {Card} from "../common/Card"
 import TemplateImg from "../../images/template.png"
 import {CountryDropdown} from "react-country-region-selector"
-import MultiRangeSlider from "../common/MultiRangeSlider"
 import {Button} from "../common/Button"
 import { ReactComponent as RoboIcon } from "../../images/icons/robot.svg"
 import { ReactComponent as MicIcon} from "../../images/icons/mic.svg"
 import Modal from "react-modal"
 import {Templates} from "./Templates"
+import Slider from '@material-ui/core/Slider';
+import { withStyles } from '@material-ui/core/styles';
+
+const SizeOptions = [
+  { value: 'centimeter', label: 'cm' },
+  { value: 'meter', label: 'm' },
+  { value: 'feet', label: 'ft' }
+]
+
+const PrettoSlider = withStyles({
+  root: {
+    color: '#52af77',
+    height: 8,
+  },
+  thumb: {
+    height: 24,
+    width: 24,
+    backgroundColor: '#fff',
+    border: '2px solid currentColor',
+    marginTop: -8,
+    marginLeft: -12,
+    '&:focus, &:hover, &$active': {
+      boxShadow: 'inherit',
+    },
+  },
+  active: {},
+  valueLabel: {
+    left: 'calc(-50% + 4px)',
+  },
+  track: {
+    height: 8,
+    borderRadius: 4,
+  },
+  rail: {
+    height: 8,
+    borderRadius: 4,
+  },
+})(Slider);
+
+function valuetext(value) {
+  return `${value}`;
+}
+
 export const PrintCreator = (props) => {
     const [repeat] = React.useState([1,2,3,4])
     const [country,setCountry] = React.useState("United States")
@@ -21,6 +63,12 @@ export const PrintCreator = (props) => {
       ]);
       const [style,setStyle] = React.useState("")
       const [showTemplates,setShowTemplates] = React.useState(false)
+      const [length,setLength] = React.useState('')
+      const [width,setWidth] = React.useState('')
+      const [zoom, setZoom] = React.useState(30);
+      const handleChange = (event, newValue) => {
+        setValue(newValue);
+      };
     return (
       <>
         <Card size="large">
@@ -41,7 +89,7 @@ export const PrintCreator = (props) => {
             <div className="form_container">
               <div className="form_row">
                 <div className="form_column_first form_column_first_print">
-                  <div style={{marginBottom:"20px"}}>
+                  <div style={{ marginBottom: "25px" }}>
                     <span className="subtitle_text">Entry Region</span>
                     <CountryDropdown
                       value={country}
@@ -50,23 +98,81 @@ export const PrintCreator = (props) => {
                       tabIndex={1000}
                     />
                   </div>
-                  <div  style={{marginBottom:"20px", display:'flex'}}>
-                  <span className="subtitle_text">Colors scheme</span>
-                  {colors.map((color, i) => (
-                    <div
-                      className="color_scheme_block"
-                      style={{ backgroundColor: `${color}` }}
-                      key={i}
-                    ></div>
-                  ))}
+                  <div>
+                    <span className="subtitle_text">Accent</span>
+                    <select className="drop_down description_text">
+                      <option value="grapefruit">Elegant</option>
+                      <option value="lime">Dark</option>
+                      <option selected value="coconut">
+                        Light
+                      </option>
+                      <option value="mango">Mango</option>
+                    </select>
                   </div>
-                  <div  style={{marginBottom:"20px"}}>
-                  <div className="subtitle_text zoom_text">Min-max Zoom</div>
-                  <MultiRangeSlider
-                    min={0}
-                    max={1000}
-                    style={{ marginLeft: "10px" }}
-                  />
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <span className="subtitle_text">Colors scheme</span>
+                    {colors.map((color, i) => (
+                      <div
+                        className="color_scheme_block"
+                        style={{ backgroundColor: `${color}` }}
+                        key={i}
+                      ></div>
+                    ))}
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <span className="subtitle_text">Zoom</span>
+                  <div className="zoom_slider_container" style={{width:'250px',marginLeft:'70px'}}>
+                  <PrettoSlider
+                      defaultValue={30}
+                      aria-labelledby="discrete-slider"
+                      getAriaValueText={valuetext}
+                      valueLabelDisplay="auto"
+                      step={10}
+                      marks={true}
+                      min={10}
+                      max={110}
+            
+                    />
+                  </div>
+                 
+                  </div>
+                 
+                  <div className="size_wrapper">
+                    <span className="subtitle_text">Size</span>
+                    <select className="drop_down description_text size_drop_down">
+                      <option selected value="centimeter">
+                        cm
+                      </option>
+                      <option value="meter">m</option>
+                      <option value="feet">ft</option>
+                      <option value="mango">Mango</option>
+                    </select>
+                    <div className="size_input_container">
+                      <input
+                        type="number"
+                        onChange={(e) => setLength(e.value)}
+                        value={length}
+                        className="input_field"
+                      />
+                      <span>X</span>
+                      <input
+                        type="number"
+                        onChange={(e) => setWidth(e.value)}
+                        id="width"
+                        value={width}
+                        className="input_field"
+                      />
+                    </div>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <span className="subtitle_text">Resolution</span>
+                    <input
+                      type="number"
+                      onChange={(e) => setLength(e.value)}
+                      value={length}
+                      className="input_field"
+                      style={{ width: "80px", marginLeft: "25px" }}
+                    ></input>
                   </div>
                 </div>
                 <div className="form_column_second print_img">
