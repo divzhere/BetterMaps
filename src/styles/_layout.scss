@@ -27,6 +27,9 @@
             .brand_logo_text {
                 font-weight: 300;
             }
+            img {
+                max-width: 260px;
+            }
         }
         .user_avatar {
             background: $base-color 0% 0% no-repeat padding-box;
