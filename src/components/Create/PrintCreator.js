@@ -9,6 +9,7 @@ import Modal from "react-modal"
 import {Templates} from "./Templates"
 import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/core/styles';
+import {TemplateList} from "./TemplateList"
 
 const SizeOptions = [
   { value: 'centimeter', label: 'cm' },
@@ -51,7 +52,6 @@ function valuetext(value) {
 }
 
 export const PrintCreator = (props) => {
-    const [repeat] = React.useState([1,2,3,4])
     const [country,setCountry] = React.useState("United States")
     const [colors] = React.useState([
       "#006837",
@@ -61,14 +61,16 @@ export const PrintCreator = (props) => {
       "#AA00FF",
       "#424242",
       ]);
-      const [style,setStyle] = React.useState("")
       const [showTemplates,setShowTemplates] = React.useState(false)
       const [length,setLength] = React.useState('')
       const [width,setWidth] = React.useState('')
-      const [zoom, setZoom] = React.useState(30);
-      const handleChange = (event, newValue) => {
-        setValue(newValue);
-      };
+      const [showMap, setShowMap] = React.useState(false);
+      const [ mapJson, setMapJson ] = React.useState({
+        region : {},
+        colorScheme : '',
+        mapLink: "",
+        styleName : ""
+      })
     return (
       <>
         <Card size="large">
@@ -186,24 +188,84 @@ export const PrintCreator = (props) => {
                 <RoboIcon />
                 <MicIcon />
               </Button>
-              <Button className="create_map_button subtitle_text">
+              <Button className="create_map_button subtitle_text"
+              onClick={() => setShowMap(!showMap)}
+              disabled={mapJson.mapLink ? false : true}>
                 Create Map
               </Button>
             </div>
           </div>
         </Card>
         <Modal isOpen={showTemplates}>
-          <Templates>
-            <div className="title_bar">
-              <div className="title_text">Select a template to use:</div>
-              <span
-                onClick={() => setShowTemplates(!showTemplates)}
-                className="close_button"
-              >
-                &#10006;
-              </span>
+          <Card size={"large"} className="template_card_container">
+            <div className="templates_card">
+              <div className="title_bar">
+                <div className="title_text">Select a template to use:</div>
+                <span
+                  onClick={() => setShowTemplates(!showTemplates)}
+                  className="close_button"
+                >
+                  &#10006;
+                </span>
+              </div>
+
+              <div className="templates_container">
+                {TemplateList.map((template, i) => (
+                  <div
+                    key={i}
+                    className="template"
+                    onClick={() => {
+                      setMapJson({
+                        ...mapJson,
+                        mapLink: template.link,
+                        styleName: template.name,
+                      });
+                      setShowTemplates(!showTemplates);
+                    }}
+                  >
+                    <img src={template.img}></img>
+                    <span>{template.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </Templates>
+          </Card>
+        </Modal>
+        <Modal isOpen={showMap}>
+          <div className="iframe_container">
+            <span
+              onClick={() => {
+                setShowMap(!showMap);
+                setMapJson({
+                  ...mapJson,
+                  mapLink: "",
+                  styleName: "",
+                });
+              }}
+              className="back_button"
+            >
+              &#60; Back
+            </span>
+            <iframe width="1060" height="600" src={mapJson.mapLink}></iframe>
+          </div>
+        </Modal>
+        <Modal isOpen={showMap}>
+          <div className="iframe_container">
+            <span
+              onClick={() => {
+                setShowMap(!showMap);
+                setMapJson({
+                  ...mapJson,
+                  mapLink: "",
+                  styleName: "",
+                });
+              }}
+              className="back_button"
+            >
+              &#60; Back
+            </span>
+            <iframe width="1060" height="600" src={mapJson.mapLink}></iframe>
+          </div>
         </Modal>
       </>
     );

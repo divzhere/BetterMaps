@@ -7,7 +7,8 @@ import {Button} from "../common/Button"
 import { ReactComponent as RoboIcon } from "../../images/icons/robot.svg"
 import { ReactComponent as MicIcon} from "../../images/icons/mic.svg"
 import Modal from "react-modal"
-import {Templates} from "./Templates"
+import {TemplateList} from "./TemplateList"
+
 export const WebCreator = (props) => {
     const [repeat] = React.useState([1,2,3,4])
     const [country,setCountry] = React.useState("United States")
@@ -19,15 +20,23 @@ export const WebCreator = (props) => {
       "#AA00FF",
       "#424242",
       ]);
-      const [style,setStyle] = React.useState("")
       const [showTemplates,setShowTemplates] = React.useState(false)
+      const [showMap, setShowMap] = React.useState(false);
+      const [ mapJson, setMapJson ] = React.useState({
+        region : {},
+        colorScheme : '',
+        mapLink: "",
+        styleName : ""
+      })
+
     return (
       <>
         <Card size="large">
           <div className="creator_card">
             {props.children}
             <div className="title_bar">
-              <div className="title_text">Print map creator</div>
+              {console.log(mapJson)}
+              <div className="title_text">Web map creator</div>
               <div className="subtitle_container">
                 <span className="subtitle_text">Template ID</span>{" "}
                 <span
@@ -73,7 +82,7 @@ export const WebCreator = (props) => {
                     onChange={(e) => {
                       setStyle(e.value);
                     }}
-                    value={style}
+                    value={mapJson.styleName}
                     className="input_field"
                   />
                 </div>
@@ -92,24 +101,68 @@ export const WebCreator = (props) => {
                 <RoboIcon />
                 <MicIcon />
               </Button>
-              <Button className="create_map_button subtitle_text">
+              <Button
+                className="create_map_button subtitle_text"
+                onClick={() => setShowMap(!showMap)}
+                disabled={mapJson.mapLink ? false : true}
+              >
                 Create Map
               </Button>
             </div>
           </div>
         </Card>
         <Modal isOpen={showTemplates}>
-          <Templates>
-            <div className="title_bar">
-            <div className="title_text">Select a template to use:</div>
-              <span
-                onClick={() => setShowTemplates(!showTemplates)}
-                className="close_button"
-              >
-                &#10006;
-              </span>
- </div>
-          </Templates>
+          <Card size={"large"} className="template_card_container">
+            <div className="templates_card">
+              <div className="title_bar">
+                <div className="title_text">Select a template to use:</div>
+                <span
+                  onClick={() => setShowTemplates(!showTemplates)}
+                  className="close_button"
+                >
+                  &#10006;
+                </span>
+              </div>
+
+              <div className="templates_container">
+                {TemplateList.map((template, i) => (
+                  <div
+                    key={i}
+                    className="template"
+                    onClick={() => {
+                      setMapJson({
+                        ...mapJson,
+                        mapLink: template.link,
+                        styleName: template.name,
+                      });
+                      setShowTemplates(!showTemplates);
+                    }}
+                  >
+                    <img src={template.img}></img>
+                    <span>{template.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Card>
+        </Modal>
+        <Modal isOpen={showMap}>
+          <div className="iframe_container">
+            <span
+              onClick={() => {
+                setShowMap(!showMap);
+                setMapJson({
+                  ...mapJson,
+                  mapLink: "",
+                  styleName: "",
+                });
+              }}
+              className="back_button"
+            >
+              &#60; Back
+            </span>
+            <iframe width="1060" height="600" src={mapJson.mapLink}></iframe>
+          </div>
         </Modal>
       </>
     );

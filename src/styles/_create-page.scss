@@ -19,28 +19,29 @@
         flex-direction: column;
         align-items: flex-start !important;
         margin-left: 20px;
-       
-        
+
+
         .size_drop_down {
             width: 65px !important;
         }
-       
+
         .size_wrapper {
             display: flex;
             align-items: center;
             width: 100%;
+
             .size_input_container {
                 display: flex;
                 width: 100%;
                 justify-content: space-around;
                 align-items: center;
-                
+
                 input {
                     width: 75px !important;
                     height: 35px !important;
                     margin-left: 0px !important;
                 }
-    
+
                 span {
                     text-align: left;
                     font: normal normal normal 20px/26px Roboto;
@@ -50,7 +51,7 @@
                 }
             }
         }
-        
+
     }
 
     .close_button {
@@ -156,6 +157,7 @@
             }
 
             .color_scheme_block {
+                cursor: pointer;
                 height: 32px;
                 width: 32px;
                 opacity: 0.54;
@@ -220,6 +222,14 @@
         height: 52px;
         background-color: $base-color;
         border-radius: 8px;
+        cursor: pointer;
+    }
+}
+
+.template_card_container {
+    .card {
+        height: auto !important;
+        margin-top: 140px !important;
     }
 }
 
@@ -267,6 +277,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-around;
+            cursor: pointer;
         }
 
         img {
@@ -283,6 +294,23 @@
             opacity: 1;
         }
     }
+}
+
+.iframe_container {
+    .back_button {
+        color: #006837;
+        font-size: 30px;
+        margin: 21px 35px 0px 0px;
+        cursor: pointer;
+    }
+
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    position: absolute;
+    width: 1060px;
+    height: 40vw;
+    border-radius: 21px;
 }
 
 .ReactModal__Content {
