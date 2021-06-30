@@ -1,20 +1,10 @@
 import React from 'react'
 import {Helmet } from 'react-helmet'
 import { Card } from '../common/Card'
-import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
 import {Button} from "../common/Button"
 import Avatar from "../../images/avatar.jpg"
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: theme.spacing(2),
-    
-    
-  },
-}));
 
 export const Account = () => {
-  const classes = useStyles(); 
   return (
     <div className="accounts_page">
       <Helmet>
@@ -41,25 +31,27 @@ export const Account = () => {
 
             <div className="form_row">
               <span className="subtitle_text">Mapbox API</span>
-              <div className="input_field">x3R56mgf701p32k56-345</div>
+              <div className="input_field">{process.env.REACT_APP_MAPBOX_API_KEY}</div>
             </div>
 
             <div className="form_row">
               <span className="subtitle_text">Maptiler API</span>
-              <div className="input_field">N.A.</div>
+              <div className="input_field">{process.env.REACT_APP_MAPTILER_API_KEY}</div>
             </div>
-            <div className="form_row">
-            </div>
+            <div className="form_row"></div>
           </div>
           <div className="form_container">
             <img src={Avatar} />
           </div>
         </div>
         <div className="bottom_row">
-          <Button type="primary" className="create_map_button subtitle_text">Reset Password</Button>
-          <Button type="primary" className="create_map_button subtitle_text">Change Password</Button>   
-          </div>
-      
+          <Button type="primary" className="create_map_button subtitle_text">
+            Reset Password
+          </Button>
+          <Button type="primary" className="create_map_button subtitle_text">
+            Change Password
+          </Button>
+        </div>
       </Card>
     </div>
   );

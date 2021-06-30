@@ -7,6 +7,10 @@
 @import 'rheostat';
 @import 'analyse-page';
 @import 'account-page';
+
 body {
     font-family: Roboto, sans-serif;
+    overflow: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }

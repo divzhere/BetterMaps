@@ -21,3 +21,10 @@ To Visit App:
 
 `localhost:3000/`  
 
+## Environment variables
+
+For mapbox and maptiler api auth key, add and save your auth keys in the .env file. Use the following names for .env file
+
+REACT_APP_MAPTILER_API_KEY=abc1234567
+REACT_APP_MAPBOX_API_KEY=pk.abc1234567
+

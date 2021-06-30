@@ -1,6 +1,7 @@
 import { SideBar } from "./components/Navbar/Nav";
 import {Helmet} from 'react-helmet'
 import "./styles/main.scss";
+import 'mapbox-gl/dist/mapbox-gl.css';
 import logo from "./images/logo.png"
 export default function App() {
   return (

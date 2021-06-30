@@ -6,10 +6,12 @@ import {Button} from "../common/Button"
 import { ReactComponent as RoboIcon } from "../../images/icons/robot.svg"
 import { ReactComponent as MicIcon} from "../../images/icons/mic.svg"
 import Modal from "react-modal"
-import {Templates} from "./Templates"
+import MaptilerLogo from "../../images/maptilerLogo.png"
+import { ReactComponent as MapboxLogo} from "../../images/mapboxLogo.svg"
 import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/core/styles';
 import {TemplateList} from "./TemplateList"
+import MapboxContainer from "./MapboxContainer"
 
 const SizeOptions = [
   { value: 'centimeter', label: 'cm' },
@@ -123,22 +125,23 @@ export const PrintCreator = (props) => {
                   </div>
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <span className="subtitle_text">Zoom</span>
-                  <div className="zoom_slider_container" style={{width:'250px',marginLeft:'70px'}}>
-                  <PrettoSlider
-                      defaultValue={30}
-                      aria-labelledby="discrete-slider"
-                      getAriaValueText={valuetext}
-                      valueLabelDisplay="auto"
-                      step={10}
-                      marks={true}
-                      min={10}
-                      max={110}
-            
-                    />
+                    <div
+                      className="zoom_slider_container"
+                      style={{ width: "250px", marginLeft: "70px" }}
+                    >
+                      <PrettoSlider
+                        defaultValue={30}
+                        aria-labelledby="discrete-slider"
+                        getAriaValueText={valuetext}
+                        valueLabelDisplay="auto"
+                        step={10}
+                        marks={true}
+                        min={10}
+                        max={110}
+                      />
+                    </div>
                   </div>
-                 
-                  </div>
-                 
+
                   <div className="size_wrapper">
                     <span className="subtitle_text">Size</span>
                     <select className="drop_down description_text size_drop_down">
@@ -188,16 +191,18 @@ export const PrintCreator = (props) => {
                 <RoboIcon />
                 <MicIcon />
               </Button>
-              <Button className="create_map_button subtitle_text"
-              onClick={() => setShowMap(!showMap)}
-              disabled={mapJson.mapLink ? false : true}>
+              <Button
+                className="create_map_button subtitle_text"
+                onClick={() => setShowMap(!showMap)}
+                disabled={mapJson.mapLink ? false : true}
+              >
                 Create Map
               </Button>
             </div>
           </div>
         </Card>
         <Modal isOpen={showTemplates}>
-          <Card size={"large"} className="template_card_container">
+          <Card size={"large"} className="template_card">
             <div className="templates_card">
               <div className="title_bar">
                 <div className="title_text">Select a template to use:</div>
@@ -210,7 +215,9 @@ export const PrintCreator = (props) => {
               </div>
 
               <div className="templates_container">
-                {TemplateList.map((template, i) => (
+                {TemplateList.sort((a, b) =>
+                  a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+                ).map((template, i) => (
                   <div
                     key={i}
                     className="template"
@@ -219,10 +226,24 @@ export const PrintCreator = (props) => {
                         ...mapJson,
                         mapLink: template.link,
                         styleName: template.name,
+                        api: template.api,
                       });
                       setShowTemplates(!showTemplates);
                     }}
                   >
+                    <div className="pill">
+                      {template.api === "maptiler" ? (
+                        <>
+                          <img src={MaptilerLogo}></img>
+                          <span>Maptiler</span>
+                        </>
+                      ) : (
+                        <>
+                          <MapboxLogo />
+                          <span>Mapbox</span>
+                        </>
+                      )}
+                    </div>
                     <img src={template.img}></img>
                     <span>{template.name}</span>
                   </div>
@@ -264,7 +285,11 @@ export const PrintCreator = (props) => {
             >
               &#60; Back
             </span>
-            <iframe width="1060" height="600" src={mapJson.mapLink}></iframe>
+            {mapJson.api === "maptiler" ? (
+              <iframe width="1060" height="600" src={mapJson.mapLink}></iframe>
+            ) : (
+              <MapboxContainer styleUrl={mapJson.mapLink} />
+            )}
           </div>
         </Modal>
       </>

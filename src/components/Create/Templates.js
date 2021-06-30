@@ -1,6 +1,5 @@
 import React from 'react'
 import {Card} from "../common/Card"
-import TemplateImg from "../../images/web_map.png"
 import {TemplateList} from "./TemplateList"
 
 export const Templates = (props) => {
@@ -13,6 +12,7 @@ export const Templates = (props) => {
             <div className="templates_container">
               {TemplateList.map((template,i) => (
                 <div key={i} className="template">
+                  <div className="pill">maptiler</div>
                   <img src={template.img}></img>
                   <span>{template.name}</span>
                 </div>

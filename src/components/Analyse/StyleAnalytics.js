@@ -23,11 +23,11 @@ export const StyleAnalytics = (props) => {
     return (
       <>
         <Card size="large">
-          <div className="creator_card">
+          <div className="creator_card analyse_card">
             {props.children}
             <div className="title_bar">
               <div className="title_text">Style Analytics</div>
-              <div className="subtitle_container">
+              <div className="analyse_style_id">
                 <span className="subtitle_text">Style ID</span>{" "}
                 <span>MB013425786</span>
               </div>
