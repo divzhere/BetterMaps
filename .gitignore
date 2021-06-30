@@ -30,6 +30,3 @@ typings/
 
 # Output of 'npm pack'
 *.tgz
-
-#Env file
-.env
